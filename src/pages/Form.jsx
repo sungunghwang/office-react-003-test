@@ -5,7 +5,10 @@ function Form() {
   const [num, setNum] = useState(0)
   const [tarea, setTarea] = useState('')
 
-  const [sec, setSec] = useState('')
+  const [sec, setSec] = useState('3')
+
+  const [isChk1, setIsChk1] = useState(false)
+  const [isChk2, setIsChk2] = useState(true)
 
   return (
     <div className="container cnt">
@@ -27,8 +30,7 @@ function Form() {
           }}
         />
         <p className="mt-3">
-          <strong>출력 : </strong>
-          {text}
+          <strong>출력 : </strong> {text}
         </p>
       </div>
       {/* 폼 단위 */}
@@ -97,14 +99,14 @@ function Form() {
             setSec(e.target.value)
           }}
         >
-          <option>Open this select menu</option>
+          <option value="0">Open this select menu</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
 
         <p className="mt-3">
-          <strong>출력 : </strong>
+          <strong>초기 선택값 : </strong>
           {sec}
         </p>
       </div>
@@ -113,27 +115,35 @@ function Form() {
       {/* 폼 단위 */}
       <div className="mb-5 mt-3">
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-          <label className="form-check-label" for="flexCheckDefault">
-            Default checkbox
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexCheckDefault"
+            checked={isChk1}
+            onChange={(e) => {
+              setIsChk1(e.target.checked)
+            }}
+          />
+          <label className="form-check-label" htmlFor="flexCheckDefault">
+            Default checkbox {isChk1 ? `선택됨` : `해제됨`}
           </label>
         </div>
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-          <label className="form-check-label" for="flexCheckChecked">
-            Checked checkbox
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexCheckChecked"
+            checked={isChk2}
+            onChange={(e) => {
+              setIsChk2(e.target.checked)
+            }}
+          />
+          <label className="form-check-label" htmlFor="flexCheckChecked">
+            Checked checkbox {isChk2 ? `선택됨` : `해제됨`}
           </label>
         </div>
-
-        <p className="mt-3">
-          <strong>출력 : </strong>
-          {sec}
-        </p>
       </div>
       {/* 폼 단위 */}
-      <button type="button" className="btn btn-primary">
-        ddd
-      </button>
     </div>
   )
 }
