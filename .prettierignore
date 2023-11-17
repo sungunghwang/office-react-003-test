@@ -1,0 +1,28 @@
+#폴더 속 모두 제외
+**/.vscode
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/dist
+**/build
+**/coverage
+
+#파일 개별 제외
+.env
+package.json
+package-lock.json
+
+settings.json
+
+.eslintrc
+.eslintrc.json
+
+.prettierrc
+.prettierrc.json
+.prettierignore
+
+
+#파일 확장자 모두 제외
+#**/*.html
+**/*.css
