@@ -22,6 +22,8 @@ settings.json
 .prettierrc.json
 .prettierignore
 
+test.jsx
+
 
 #파일 확장자 모두 제외
 #**/*.html
