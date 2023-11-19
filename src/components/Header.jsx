@@ -21,6 +21,11 @@ function Header() {
             </NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/multiForm" className="nav-link">
+              MultiForm
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/tableList" className="nav-link">
               TableList
             </NavLink>

@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Form from './pages/Form'
+import MultiForm from './pages/MultiForm'
 import TableList from './pages/TableList'
 import Blog from './pages/Blog'
 import Movie from './pages/Movie'
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/multiForm" element={<MultiForm />} />
           <Route path="/tableList" element={<TableList />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/movie" element={<Movie />} />
