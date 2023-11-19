@@ -33,6 +33,7 @@ function MultiForm() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
+    // 여기 코드 이하 부터는 fetch API 또는 axios 를 이용해 서버에 POST 요청으로 데이터를 전송하면되는 것이다.
     console.table(multiData)
   }
 
