@@ -19,6 +19,7 @@
     "react/no-array-index-key": 0,
     "prefer-destructuring": 0,
     "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
     "jsx-a11y/label-has-associated-control": [ 2, {
       "some": [ "nesting", "id" ]
     }]

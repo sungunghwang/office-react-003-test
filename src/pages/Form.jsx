@@ -1,19 +1,34 @@
 import React, { useState } from 'react'
 
 function Form() {
-  const [text, setText] = useState('')
-  const [num, setNum] = useState(0)
-  const [tarea, setTarea] = useState('')
+  const [text, setText] = useState('초기값 출력')
+  const [num, setNum] = useState(5)
+  const [tarea, setTarea] = useState('초기값 출력')
   const [sec, setSec] = useState('3')
-  const [isChk, setIsChk] = useState(true)
-  const [isRdo, setIsRdo] = useState()
+  const [isRdo, setIsRdo] = useState('female')
+  // 체크박스 개별처리
+  const [isChk1, setIsChk1] = useState('HTML')
+  const [isChk2, setIsChk2] = useState('CSS')
+  // 체크박스 멀티처리
+  const [isTech, setIsTech] = useState(['웹퍼블리싱', '웹서버관리'])
+  const onChangeTechHandler = (e) => {
+    let copyData = [...isTech]
+    const checked = e.target.checked
+    const value = e.target.value
+    if (checked) {
+      copyData.push(value)
+    } else {
+      copyData = copyData.filter((item) => item !== value)
+    }
+    setIsTech(copyData)
+  }
 
   return (
     <div className="container cnt">
       <h1>Form</h1>
       <br />
       <br />
-      <h2 className="mb-5">🎁form 단일 처리 케이스</h2>
+      <h2 className="mb-5">🎁 컨트롤러 단일 작동 및 초기 값 처리</h2>
 
       {/* 폼 단위 */}
       <div className="mb-5 mt-3">
@@ -78,6 +93,7 @@ function Form() {
           name="tarea1"
           id="tarea1"
           rows="5"
+          value={tarea}
           onChange={(e) => {
             setTarea(e.target.value)
           }}
@@ -120,36 +136,17 @@ function Form() {
         <div className="form-check">
           <input
             className="form-check-input"
-            type="checkbox"
-            id="chk1"
-            value={isChk}
-            checked={isChk}
-            onChange={(e) => {
-              setIsChk(e.target.checked)
-            }}
-          />
-          <label className="form-check-label" htmlFor="chk1">
-            Default checkbox {isChk ? `선택됨` : `해제됨`}
-          </label>
-        </div>
-      </div>
-      {/* 폼 단위 */}
-
-      {/* 폼 단위 */}
-      <div className="mb-5 mt-3">
-        <div className="form-check">
-          <input
-            className="form-check-input"
             type="radio"
             id="rdo1"
             name="gender"
             value="male"
+            checked={isRdo === 'male'}
             onChange={(e) => {
               setIsRdo(e.target.value)
             }}
           />
           <label className="form-check-label" htmlFor="rdo1">
-            남성 {isRdo === 'male' ? `선택됨` : `해제됨`}
+            남성 {isRdo === 'male' ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
           </label>
         </div>
 
@@ -160,15 +157,113 @@ function Form() {
             id="rdo2"
             name="gender"
             value="female"
+            checked={isRdo === 'female'}
             onChange={(e) => {
               setIsRdo(e.target.value)
             }}
           />
           <label className="form-check-label" htmlFor="rdo2">
-            여성 {isRdo === 'female' ? `선택됨` : `해제됨`}
+            여성 {isRdo === 'female' ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
           </label>
         </div>
-        <p className="mt-3 text-danger">초기값을 어떻게 구현하는지 고민해야함</p>
+
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            id="rdo3"
+            name="gender"
+            value="other"
+            checked={isRdo === 'other'}
+            onChange={(e) => {
+              setIsRdo(e.target.value)
+            }}
+          />
+          <label className="form-check-label" htmlFor="rdo3">
+            기타 {isRdo === 'other' ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
+      </div>
+      {/* 폼 단위 */}
+
+      {/* 폼 단위 */}
+      <h3>체크박스 개별 처리</h3>
+      <div className="mb-5 mt-3">
+        <p>HTML 사용여부</p>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="chk1"
+            value="HTML"
+            checked={isChk1 === 'HTML'}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setIsChk1(e.target.value)
+              } else {
+                setIsChk1('')
+              }
+            }}
+          />
+          <label className="form-check-label" htmlFor="chk1">
+            HTML {isChk1 ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
+
+        <br />
+        <br />
+
+        <p>CSS 사용여부</p>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="chk2"
+            value="CSS"
+            checked={isChk2 === 'CSS'}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setIsChk2(e.target.value)
+              } else {
+                setIsChk2('')
+              }
+            }}
+          />
+          <label className="form-check-label" htmlFor="chk2">
+            CSS {isChk2 ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
+      </div>
+      {/* 폼 단위 */}
+
+      {/* 폼 단위 */}
+      <h3>다중 체크박스 배열 처리로 한번에 상태관리</h3>
+      <div className="mb-5 mt-3">
+        <p>보유기술 현황</p>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="chkID01" name="technology" value="웹디자인" checked={isTech.indexOf('웹디자인') !== -1} onChange={onChangeTechHandler} />
+          <label className="form-check-label" htmlFor="chkID01">
+            웹디자인 {isTech.indexOf('웹디자인') !== -1 ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="chkID02" name="technology" value="웹퍼블리싱" checked={isTech.indexOf('웹퍼블리싱') !== -1} onChange={onChangeTechHandler} />
+          <label className="form-check-label" htmlFor="chkID02">
+            웹퍼블리싱 {isTech.indexOf('웹퍼블리싱') !== -1 ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="chkID03" name="technology" value="웹서버관리" checked={isTech.indexOf('웹서버관리') !== -1} onChange={onChangeTechHandler} />
+          <label className="form-check-label" htmlFor="chkID03">
+            웹서버관리 {isTech.indexOf('웹서버관리') !== -1 ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="chkID04" name="technology" value="웹프로그래밍" checked={isTech.indexOf('웹프로그래밍') !== -1} onChange={onChangeTechHandler} />
+          <label className="form-check-label" htmlFor="chkID04">
+            웹프로그래밍 {isTech.indexOf('웹프로그래밍') !== -1 ? '선택됨' : <span style={{ color: 'red' }}>해제됨</span>}
+          </label>
+        </div>
       </div>
       {/* 폼 단위 */}
 

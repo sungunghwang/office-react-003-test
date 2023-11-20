@@ -43,7 +43,7 @@ function MultiForm() {
       <br />
       <br />
 
-      <h2 className="mb-5">🎁form 멀티 폼 처리 케이스</h2>
+      <h2 className="mb-5">🎁 form 태그 submit 멀티폼 작동 및 초기 값 처리</h2>
       <form onSubmit={onSubmitHandler}>
         <div className="container border g-0 p-2 p-lg-5">
           <div className="row justify-content-center g-0">
