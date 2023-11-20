@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import BlogListItem from '../components/BlogListItem'
+
+const SERVER_URL = 'http://localhost:3001/posts'
 
 function Blog() {
+  const navigate = useNavigate()
   const [posts, setPosts] = useState([])
 
   const getPosts = () => {
-    axios.get('https://jsonplaceholder.typicode.com/posts').then((res) => {
+    axios.get(SERVER_URL).then((res) => {
       setPosts(res.data)
     })
   }
@@ -14,8 +19,6 @@ function Blog() {
     getPosts()
   }, [])
 
-  console.log(posts)
-
   return (
     <div className="container cnt">
       <h1>Blog</h1>
@@ -23,42 +26,20 @@ function Blog() {
       <br />
       <h2 className="mb-5">🎁 json-server 의 posts 데이터를 axios로 가져와 CRUD 처리</h2>
       <div className="blog-list">
-        <div className="card mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Special title treatment</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div className="card mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Special title treatment</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div className="card mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Special title treatment</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div className="card mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Special title treatment</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div className="card mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Special title treatment</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div className="card mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Special title treatment</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
+        {posts.map((arr) => (
+          <BlogListItem key={arr.id} blogData={arr} />
+        ))}
+      </div>
+      <div className="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={() => {
+            navigate('/blog/write')
+          }}
+        >
+          글쓰기
+        </button>
       </div>
     </div>
   )
