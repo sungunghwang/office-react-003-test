@@ -6,6 +6,7 @@ import MultiForm from './pages/MultiForm'
 import TableList from './pages/TableList'
 import Blog from './pages/Blog'
 import Movie from './pages/Movie'
+import MovieDetail from './pages/MovieDetail'
 import Not from './pages/Not'
 import Header from './components/Header'
 import BlogWrite from './pages/BlogWrite'
@@ -24,9 +25,10 @@ function App() {
           <Route path="/tableList" element={<TableList />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/write" element={<BlogWrite />} />
-          <Route path="/blog/modify/:id" element={<BlogModify />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/blog/modify/:prmId" element={<BlogModify />} />
+          <Route path="/blog/:prmId" element={<BlogDetail />} />
           <Route path="/movie" element={<Movie />} />
+          <Route path="/movie/:prmId" element={<MovieDetail />} />
           <Route path="/*" element={<Not />} />
         </Routes>
       </BrowserRouter>

@@ -6,13 +6,13 @@ const SERVER_URL = 'http://localhost:3001/posts'
 
 function BlogModify() {
   const navigate = useNavigate()
-  const { id } = useParams()
+  const { prmId } = useParams()
   const [post, setPost] = useState({
     title: '',
     content: '',
   })
   const getPosts = () => {
-    axios.get(`${SERVER_URL}/${id}`).then((res) => {
+    axios.get(`${SERVER_URL}/${prmId}`).then((res) => {
       // setPosts(res.data)
       setPost(() => ({
         ...post,
@@ -35,7 +35,7 @@ function BlogModify() {
   const submitPostHandler = (e) => {
     e.preventDefault()
     axios
-      .patch(`${SERVER_URL}/${id}`, {
+      .patch(`${SERVER_URL}/${prmId}`, {
         title: post.title,
         content: post.content,
       })
